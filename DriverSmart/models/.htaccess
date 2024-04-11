@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /models/
+
+    RewriteRule ^ - [R=405]
+
+    ErrorDocument 405 /DriverSmart/405.html
+</IfModule>

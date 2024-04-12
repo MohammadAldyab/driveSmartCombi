@@ -1,7 +1,7 @@
 <?php
 require_once("../head/head.php");
 
-require "../../controllers/LessbloackController.php";
+require "../../controllers/lessbloackController.php";
 $lessbloackController = new lessbloackController();
 $lessbloack = $lessbloackController->get();
 ?>
@@ -49,18 +49,18 @@ $lessbloack = $lessbloackController->get();
             <?php foreach ($lessbloack as $row) : ?>
               <tr>
 
-                <td><?= $row->instructor_id ?></td>
-                <td><?= $row->vehicle_license ?></td>
-                <td><?= $row->date ?></td>
-                <td><?= $row->timeblock ?></td>
+                <td><?= $row->instructeur_id ?></td>
+                <td><?= $row->auto_kenteken ?></td>
+                <td><?= $row->datum ?></td>
+                <td><?= $row->tijdblok ?></td>
                 <td>
                 </td>
                 <!-- Add 1 hour to the Time Block -->
-                <td><?= date('H:i', strtotime('+1 hour', strtotime($row->timeblock))) ?></td>
-                <td><?= $row->student_id ?></td>
-                <td><?= isset($row->report) ? $row->report : "unknown" ?></td>
+                <td><?= date('H:i', strtotime('+1 hour', strtotime($row->tijdblok))) ?></td>
+                <td><?= $row->leerling_id ?></td>
+                <td><?= isset($row->verslag) ? $row->verslag : "unknown" ?></td>
                 <!-- Check that the report is empty and that the date is today -->
-                <?php if (empty($row->report) && $row->date == date("Y-m-d")) : ?>
+                <?php if (empty($row->verslag) && $row->datum == date("Y-m-d")) : ?>
                   <td>
                     <a href="edit.php?id=<?= $row->id ?>">
                       <button type="button" name="bewerken" id="txtedit" class="btn btn-warning">Edit</button>

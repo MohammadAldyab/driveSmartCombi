@@ -6,9 +6,9 @@ require_once "../../models/UserModel.php";
 
 class UserController extends UserModel
 {
-    public function login($email, $password)
+    public function login($email, $wachtwoord)
     {
-        $user = $this->authenticate($email, $password);
+        $user = $this->authenticate($email, $wachtwoord);
         if ($user) {
             session_start();
             $_SESSION['email'] = $user;
@@ -29,8 +29,8 @@ class UserController extends UserModel
         }
     }
 
-    public function signup($email, $password)
+    public function signup($email, $wachtwoord)
     {
-        return $this->register($email, $password);
+        return $this->register($email, $wachtwoord);
     }
 }

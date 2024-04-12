@@ -2,7 +2,7 @@
 
 require "../../models/StrippenkaartModel.php";
 
-class strippenkaartController extends stampcardModel
+class strippenkaartController extends strippenkaartModel
 {
     // Get all the strip cards
     public function get()
@@ -41,10 +41,10 @@ class strippenkaartController extends stampcardModel
 
 
     // Add a new strip of cards
-    public function create($student_id, $amount_lessons)
+    public function create($student_id, $aantal_lessen)
     {
         // Execute the method to add a new strip or cards with the specified data
-        $result = $this->add($student_id, $amount_lessons);
+        $result = $this->add($student_id, $aantal_lessen);
 
         // Check if the addition was successful
         if ($result) {
@@ -76,8 +76,8 @@ class strippenkaartController extends stampcardModel
             // Check if the new data is different from the original data
             if (
 
-                $_POST["amount_lessons"] == $carsData['amount_lessons'] &&
-                $_POST["remaining_lessons"] == $carsData['remaining_lessons']
+                $_POST["aantal_lessen"] == $carsData['aantal_lessen'] &&
+                $_POST["resterende_lessen"] == $carsData['resterende_lessen']
 
             ) {
                 // No changes made, send an error message
@@ -86,7 +86,7 @@ class strippenkaartController extends stampcardModel
             }
 
             // Call the edit function and handle the result
-            $result = $this->edit($_POST["amount_lessons"], $_POST["remaining_lessons"], $_GET["id"]);
+            $result = $this->edit($_POST["aantal_lessen"], $_POST["resterende_lessen"], $_GET["id"]);
 
             // Check if the operation was successful
             if ($result) {

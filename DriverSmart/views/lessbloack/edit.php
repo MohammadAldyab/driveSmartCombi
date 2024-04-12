@@ -7,7 +7,7 @@ $find = $lessbloack->findorfail($_GET["id"]);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // update the record
-    $update = $lessbloack->update($_POST["report"], $_POST["id"]);
+    $update = $lessbloack->update($_POST["verslag"], $_POST["id"]);
 }
 
 
@@ -29,8 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <form method="POST">
-        <label for="report">Report:</label><br>
-        <input type="text" id="report" class="fadeIn second" name="report" value="<?= $find->report ?>" required><br>
+        <label for="verslag">Report:</label><br>
+        <input type="text" id="verslag" class="fadeIn second" name="verslag" value="<?= $find->verslag ?>" required><br>
         <!-- Hidden input field to store the ID -->
         <input type="hidden" name="id" value="<?= $find->id ?>">
         <div class="form-group">

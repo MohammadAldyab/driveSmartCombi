@@ -7,23 +7,24 @@ class lessbloackModel extends Database
     // Get all lessbloack
     protected function index()
     {
-     
+        $email = $_SESSION['email']['email'];
         // Connect to the database
         $connection = $this->connect();
         // Prepare the SQL query
         $stmt = $connection->prepare("
-        SELECT lessonblock.id, lessonblock.date, lessonblock.timeblock, lessonblock.report, instructor.first_name AS instructor_id, vehicle.brand AS vehicle_license,
-        student.name AS student_id 
-        FROM lessonblock AS lessonblock
-        LEFT JOIN instructor AS instructor ON lessonblock.instructor_id = instructor.id 
-        LEFT JOIN vehicle AS vehicle ON lessonblock.vehicle_license = vehicle.license
-        LEFT JOIN student AS student ON lessonblock.student_id = student.id
-
+        SELECT lesblok.id, lesblok.datum, lesblok.tijdblok, lesblok.verslag, instructeur.voornaam AS instructeur_id, auto.kenteken AS auto_kenteken,
+leerling.naam AS leerling_id 
+FROM lesblok AS lesblok
+LEFT JOIN instructeur AS instructeur ON lesblok.instructeur_id = instructeur.id 
+LEFT JOIN auto AS auto ON lesblok.auto_kenteken = auto.id
+LEFT JOIN leerling AS leerling ON lesblok.leerling_id = leerling.id
+WHERE lesblok.datum >= CURDATE() AND lesblok.datum <= CURDATE() + INTERVAL 1 MONTH
+AND instructeur.id = (SELECT id FROM instructeur WHERE email = ?)
 
 
     ");
         // Execute the query with the email as parameter
-        $stmt->execute();
+        $stmt->execute([$email]);
         // Check if any rows were found
         if ($stmt->rowCount() > 0) {
             // Return the results as an array of objects
@@ -41,7 +42,7 @@ class lessbloackModel extends Database
         // Connect to the database
         $connection = $this->connect();
         // Prepare the SQL query
-        $stmt = $connection->prepare("SELECT * FROM lessonblock WHERE id = ? ");
+        $stmt = $connection->prepare("SELECT * FROM lesblok WHERE id = ? ");
         // Execute the query with the specified parameters
         $stmt->execute([$id]);
         // Check if any rows were found
@@ -55,14 +56,14 @@ class lessbloackModel extends Database
     }
 
     // Update lessbloack
-    protected function edit($report, $id)
+    protected function edit($verslag, $id)
     {
         // Connect to the database
         $connection = $this->connect();
         // Prepare the SQL query
-        $stmt = $connection->prepare("UPDATE lessonblock SET report = ? WHERE id = ?");
+        $stmt = $connection->prepare("UPDATE lesblok SET verslag = ? WHERE id = ?");
         // Execute the query 
-        $stmt->execute([$report, $id]);
+        $stmt->execute([$verslag, $id]);
         // Return true if at least one row was affected
         return $stmt->rowCount() > 0;
     }
@@ -70,27 +71,25 @@ class lessbloackModel extends Database
     protected function reduceLessons($id)
     {
         $connection = $this->connect(); // Connect to the database
-        $stmt = $connection->prepare("UPDATE stampcard SET remaining_lessons = remaining_lessons - ? WHERE student_id  = ?");
-        
+        $stmt = $connection->prepare("UPDATE strippenkaart SET resterende_lessen = resterende_lessen - ? WHERE student_id  = ? AND status = ?");
         $stmt->execute([1, $id, 1]); // Execute the query with parameters
         return $stmt->rowCount(); // Return true if at least one row was affected
     }
-
     // Get lessbloack details for a specific lessbloack ID for validation
-    protected function getDetails($lessonblockId)
+    protected function getDetails($lesblokId)
     {
         //  method to connect to the database
         $connection = $this->connect();
 
         // Prepare the query
-        $stmt = $connection->prepare("SELECT * FROM lessonblock WHERE id = ?");
+        $stmt = $connection->prepare("SELECT * FROM lesblok WHERE id = ?");
         // Execute the query with the specified orderId
-        $stmt->execute([$lessonblockId]);
+        $stmt->execute([$lesblokId]);
 
 
-        $lessonblockIdDetails = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lesblokIdDetails = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Return the found data
-        return $lessonblockIdDetails;
+        return $lesblokIdDetails;
     }
 }

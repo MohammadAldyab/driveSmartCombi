@@ -22,16 +22,16 @@ body {
 .wrapper {
   position: relative;
   max-width: 1298px;
-  height: vehicle;
-  margin: 2em vehicle 0 vehicle;
+  height: auto;
+  margin: 2em auto 0 auto;
 }
 
 /* https://www.flaticon.com/authors/vectors-market */
 /* https://www.flaticon.com/authors/icomoon */
 .box {
   max-width: 70%;
-  min-height: vehicle;
-  margin: 0 vehicle;
+  min-height: auto;
+  margin: 0 auto;
   padding: 1em 1em;
   text-align: center;
   background: url("https://www.dropbox.com/s/xq0841cp3icnuqd/flame.png?raw=1") no-repeat top 10em center/128px 128px,

@@ -30,7 +30,7 @@ class lessbloackController extends lessbloackModel
             $originalData = $this->getDetails($_GET["id"]);
 
             // Check if the new data is different from the original data
-            if ($_POST["report"] == $originalData['report']) {
+            if ($_POST["verslag"] == $originalData['verslag']) {
                 // No changes made, send an error message
                 header("Location: index.php?message=No changes made.");
                 // Exit to prevent further execution
@@ -39,8 +39,8 @@ class lessbloackController extends lessbloackModel
 
 
             // Call the edit function and handle the result
-            $result = $this->edit($_POST["report"], $_GET["id"]);
-            $reduceLessons = $this->reduceLessons($originalData['student_id']);
+            $result = $this->edit($_POST["verslag"], $_GET["id"]);
+            $reduceLessons = $this->reduceLessons($originalData['leerling_id']);
             if ($result && $reduceLessons) {
                 // Indien succesvol, omleiding met succesbericht
                 header("Location: index.php?message=Succesvol bijgewerkt");

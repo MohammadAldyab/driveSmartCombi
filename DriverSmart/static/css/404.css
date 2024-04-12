@@ -217,7 +217,7 @@ li a:hover {
 .btn-go-home {
     position: relative;
     z-index: 200;
-    margin: 15px vehicle;
+    margin: 15px auto;
     width: 100px;
     padding: 10px 15px;
     border: 1px solid #FFCB39;

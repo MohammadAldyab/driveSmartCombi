@@ -9,15 +9,15 @@ $userController = new UserController();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Get the input values
     $email = $_POST["email"];
-    $password = $_POST["password"];
+    $wachtwoord = $_POST["wachtwoord"];
 
     // Perform login
-    if ($userController->login($email, $password)) {
+    if ($userController->login($email, $wachtwoord)) {
         // Redirect to the index page or any other page
         header("Location: login.php");
         exit();
     } else {
-        $error = "Invalid email or password";
+        $error = "Invalid email or wachtwoord";
     }
 }
 ?>
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="email" id="email" class="fadeIn second" name="email" placeholder="Your Email" required><br>
 
 
-            <input type="password" id="password" class="fadeIn third" name="password" placeholder="Your password" required><br>
+            <input type="password" id="wachtwoord" class="fadeIn third" name="wachtwoord" placeholder="Your password" required><br>
 
             <input type="submit" class="fadeIn fourth" value="Login">
         </form>

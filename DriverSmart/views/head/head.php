@@ -62,12 +62,12 @@ if (isset($_SESSION['email'])) {
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link <?php echo isActive('/DriverSmart/views/strippenkaart/index.php'); ?>" href="/DriverSmart/views/strippenkaart/index.php" role="button">
-                                        stampcard
+                                        Strippenkaart
                                     </a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link <?php echo isActive('/DriverSmart/views/lessbloack/index.php'); ?>" href="/DriverSmart/views/lessbloack/index.php" role="button">
-                                        lessonblock
+                                        lesblok
                                     </a>
                                 </li>
                             <?php endif; ?>

@@ -1,6 +1,6 @@
 form {
   max-width: 300px;
-  margin: 10px vehicle;
+  margin: 10px auto;
   padding: 10px 20px;
   background: #f4f7f8;
   border-radius: 8px;
@@ -23,7 +23,7 @@ select[type="text"] {
   background: rgba(255, 255, 255, 0.1);
   border: none;
   font-size: 16px;
-  height: vehicle;
+  height: auto;
   margin: 0;
   outline: 0;
   padding: 15px;

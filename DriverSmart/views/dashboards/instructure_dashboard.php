@@ -6,7 +6,7 @@ require "../../controllers/UserController.php";
 echo '
 <div class="alert alert-danger " role="alert">
 <h4>WELKOM INSTRUCTURE, </h4>
-<h5>' . $_SESSION['email']['first_name'] . '</h5>
+<h5>' . $_SESSION['email']['voornaam'] . '</h5>
 </div>';
 ?>
 

@@ -1,15 +1,15 @@
 <?php
 require_once("../head/head.php");
-require "../../controllers/strippenkaartController.php";
+require "../../controllers/StrippenkaartController.php";
 // get the class
-$stampcard = new strippenkaartController();
-$find = $stampcard->findorfail();
-// get the stampcard details
-$stampcardten = $stampcard->getOneDetails($_GET['id']);
+$strippenkaart = new strippenkaartController();
+$find = $strippenkaart->findorfail();
+// get the strippenkaart details
+$strippenkaartten = $strippenkaart->getOneDetails($_GET['id']);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // update the class
-    $update = $stampcard->update($_POST["amount_lessons"], $_POST["remaining_lessons"], $_GET['id']);
+    $update = $strippenkaart->update($_POST["aantal_lessen"], $_POST["resterende_lessen"], $_GET['id']);
 }
 ?>
 
@@ -29,11 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <form method="POST">
-        <label for="amount_lessons">Number of lessons:</label><br>
-        <input type="text" id="amount_lessons" name="amount_lessons" value="<?= $stampcardten['amount_lessons'] ?>" required><br>
+        <label for="aantal_lessen">Number of lessons:</label><br>
+        <input type="text" id="aantal_lessen" name="aantal_lessen" value="<?= $strippenkaartten['aantal_lessen'] ?>" required><br>
 
-        <label for="remaining_lessons">Remaining lessons:</label><br>
-        <input type="text" id="remaining_lessons" name="remaining_lessons" value="<?= $stampcardten['remaining_lessons'] ?>" required><br>
+        <label for="resterende_lessen">Remaining lessons:</label><br>
+        <input type="text" id="resterende_lessen" name="resterende_lessen" value="<?= $strippenkaartten['resterende_lessen'] ?>" required><br>
 
         <div class="form-group">
             <br>
